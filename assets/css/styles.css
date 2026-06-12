@@ -192,6 +192,7 @@ p { margin-top: 0; }
   .site-nav .nav-cta { margin-left: .4rem; padding: .6rem 1rem; color: var(--white); background: var(--navy); }
   .site-nav .nav-cta:hover, .site-nav .nav-cta[aria-current="page"] { color: var(--white); background: var(--blue); }
   .hero-grid { grid-template-columns: 1.25fr .75fr; }
+  .hero-graphic { transform: scaleX(-1); }
   .split { grid-template-columns: repeat(2, 1fr); }
   .service-grid { grid-template-columns: repeat(4, 1fr); }
   .service-card:first-child { grid-column: span 2; grid-row: span 2; min-height: 35rem; }
