@@ -1,0 +1,11 @@
+{
+  "name": "magic-wand-cleaning-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website for Magic Wand Cleaning in Lethbridge, Alberta.",
+  "scripts": {
+    "test": "node tools/check-site.js",
+    "lint": "node --check assets/js/main.js && node --check tools/check-site.js && node --check tools/build-site.js",
+    "build": "node tools/build-site.js"
+  }
+}

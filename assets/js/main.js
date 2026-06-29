@@ -1,77 +1,54 @@
-const header = document.querySelector(".site-header");
-const navToggle = document.querySelector(".nav-toggle");
-const siteNav = document.querySelector(".site-nav");
+(() => {
+  "use strict";
 
-const closeMenu = () => {
-  if (!navToggle || !siteNav) return;
-  navToggle.setAttribute("aria-expanded", "false");
-  navToggle.setAttribute("aria-label", "Open navigation menu");
-  siteNav.classList.remove("is-open");
-  document.body.classList.remove("menu-open");
-};
+  const header = document.querySelector("[data-site-header]");
+  const menuButton = document.querySelector("[data-nav-toggle]");
+  const navigation = document.querySelector("[data-site-nav]");
 
-if (navToggle && siteNav) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
-    navToggle.setAttribute("aria-expanded", String(!isOpen));
-    navToggle.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
-    siteNav.classList.toggle("is-open", !isOpen);
-    document.body.classList.toggle("menu-open", !isOpen);
+  if (!header || !menuButton || !navigation) {
+    return;
+  }
+
+  const desktopQuery = window.matchMedia("(min-width: 60rem)");
+
+  const setMenuState = (isOpen) => {
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    navigation.classList.toggle("is-open", isOpen);
+    document.body.classList.toggle("menu-open", isOpen && !desktopQuery.matches);
+  };
+
+  menuButton.addEventListener("click", () => {
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+    setMenuState(!isOpen);
   });
 
-  siteNav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) closeMenu();
+  navigation.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      setMenuState(false);
+    }
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeMenu();
+    if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+      setMenuState(false);
+      menuButton.focus();
+    }
   });
-}
 
-const updateHeader = () => header?.classList.toggle("is-scrolled", window.scrollY > 10);
-updateHeader();
-window.addEventListener("scroll", updateHeader, { passive: true });
+  document.addEventListener("click", (event) => {
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+    if (isOpen && !header.contains(event.target)) {
+      setMenuState(false);
+    }
+  });
 
-document.querySelectorAll("[data-year]").forEach((element) => {
-  element.textContent = new Date().getFullYear();
-});
+  desktopQuery.addEventListener("change", () => setMenuState(false));
 
-const quoteForm = document.querySelector("[data-quote-form]");
-if (quoteForm) {
-  const status = quoteForm.querySelector(".form-status");
-  const requiredFields = [...quoteForm.querySelectorAll("[required]")];
-
-  const validateField = (field) => {
-    const error = document.getElementById(`${field.id}-error`);
-    if (!error) return field.checkValidity();
-    let message = "";
-    if (field.validity.valueMissing) message = "Please complete this field.";
-    else if (field.validity.typeMismatch) message = "Please enter a valid email address.";
-    else if (field.validity.patternMismatch) message = "Please enter a valid phone number.";
-    field.setAttribute("aria-invalid", String(Boolean(message)));
-    error.textContent = message;
-    return !message;
+  const updateHeader = () => {
+    header.classList.toggle("is-scrolled", window.scrollY > 12);
   };
 
-  requiredFields.forEach((field) => {
-    field.addEventListener("blur", () => validateField(field));
-    field.addEventListener("input", () => {
-      if (field.getAttribute("aria-invalid") === "true") validateField(field);
-    });
-  });
-
-  quoteForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const contactMethods = [...quoteForm.querySelectorAll('input[name="contact-method"]')];
-    const contactMethodError = document.getElementById("contact-method-error");
-    const hasContactMethod = contactMethods.some((field) => field.checked);
-    if (contactMethodError) contactMethodError.textContent = hasContactMethod ? "" : "Please choose a preferred contact method.";
-    const isValid = requiredFields.filter((field) => field.type !== "radio").map(validateField).every(Boolean) && hasContactMethod;
-    status.className = `form-status ${isValid ? "is-success" : "is-error"}`;
-    status.textContent = isValid
-      ? "Your request is ready to send. Online form delivery is not connected yet, so please call or message Magic Wand Cleaning on Facebook."
-      : "Please review the highlighted fields before continuing.";
-    if (!isValid) (quoteForm.querySelector('[aria-invalid="true"]') || contactMethods[0])?.focus();
-    status.focus();
-  });
-}
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+})();

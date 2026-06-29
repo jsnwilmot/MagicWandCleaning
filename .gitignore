@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+out/
+
+# Framework caches
+.cache/
+.vite/
+.astro/
+.next/
+.nuxt/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Test output
+coverage/
+
+# Local visual QA output
+tempscreenshots/
+10_Documentation/phase-1a-output/
+10_Documentation/phase-1-reset-output/
+10_Documentation/screenshot-*.png
+10_Documentation/design-reference/call_*.png
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+tmp/
+temp/
+
+# Editor files
+.vscode/
+.idea/

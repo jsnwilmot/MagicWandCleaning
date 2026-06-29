@@ -1,0 +1,436 @@
+# Data Model
+
+**Project:** Magic Wand Cleaning  
+**Client:** Jason Wilmot  
+**Business or department:** Magic Wand Cleaning, a local cleaning business serving Lethbridge, Alberta and nearby areas.  
+**App type:** Web Page  
+**Target platform:** Web Browser  
+**Status:** Intake Complete
+
+## Data sources
+
+- Data sources:
+- Approved project data sources may include:
+- 1. Magic Wand Cleaning owner-provided information
+- Business name, service details, service area, contact information, preferred wording, pricing guidance if used, and final content approvals.
+- 2. Provided brand assets
+- Logo, favicon, icons, colours, business card design, and any approved visual branding files.
+- 3. Provided photos and images
+- Cleaning photos, before-and-after images, showcase images, background images, and any other client-approved website images.
+- 4. Existing Facebook page
+- Public business information, service details, photos, reviews, and general business context from the Magic Wand Cleaning Facebook page.
+- 5. Rose & Paw Digital Designs project files
+- Website files, design notes, SEO notes, copy drafts, image optimization files, and deployment notes created during the project.
+- 6. Contact form service
+- Submitted contact or quote request details if a contact form is added.
+- 7. Website analytics
+- Basic traffic and search data if analytics or Google Search Console are connected.
+- No private customer database, payment system, booking system, login system, or internal business records are included as data sources for the first version.
+
+## Tables, lists, or collections
+
+- Tables, lists, or collections:
+- The first version of the Magic Wand Cleaning website will not require a database.
+- The website will manage the following content collections:
+- 1. Services
+- Stores the approved cleaning services shown on the website, including service name, short description, customer benefit, and related call to action.
+- 2. Service areas
+- Stores the approved locations served by Magic Wand Cleaning, including Lethbridge and any nearby areas confirmed by the business owner.
+- 3. Contact methods
+- Stores approved contact details, such as phone number, email address, Facebook link, and contact form settings if used.
+- 4. Website pages
+- Stores page content for the homepage, services, about section, contact section, FAQ section, privacy policy, and footer.
+- 5. Image assets
+- Stores approved website images, including logo, favicon, icons, service images, background images, before-and-after photos, and proof-of-work images.
+- 6. Testimonials or reviews
+- Stores approved customer reviews, testimonials, or review highlights if available.
+- 7. SEO metadata
+- Stores page titles, meta descriptions, heading structure, image alt text, Open Graph content, and local SEO wording.
+- 8. Contact requests
+- If a contact form is used, submitted requests may be stored or sent through the approved form service. This may include name, email, phone number, message, requested service, and submission date.
+
+## Entities
+
+- Data entities:
+- 1. Business
+- Represents Magic Wand Cleaning as the business shown on the website. Includes business name, logo, service area, contact details, brand assets, and business description.
+- 2. Service
+- Represents each cleaning service offered by the business. Includes service name, short description, customer benefit, and related call to action.
+- 3. Service area
+- Represents the locations served by Magic Wand Cleaning. Includes Lethbridge and any approved nearby areas.
+- 4. Contact method
+- Represents the approved ways visitors can contact the business. May include phone, email, Facebook, and contact form.
+- 5. Website visitor
+- Represents a public user visiting the website to learn about services or contact the business.
+- 6. Contact request
+- Represents a message submitted through the website if a contact or quote form is used. May include name, email, phone number, message, requested service, and submission date.
+- 7. Image asset
+- Represents website images such as logo files, favicon, icons, service images, background images, before-and-after photos, and proof-of-work photos.
+- 8. Testimonial or review
+- Represents approved customer feedback, review highlights, or trust content if available.
+- 9. Page content
+- Represents written website content, including homepage copy, service descriptions, about content, FAQ content, privacy policy content, and footer text.
+- 10. SEO metadata
+- Represents page titles, meta descriptions, headings, image alt text, Open Graph content, and local search wording.
+
+## Fields
+
+- Fields:
+- 1. Services
+- Service ID
+- Service name
+- Short description
+- Detailed description
+- Customer benefit
+- Recommended use case
+- Display order
+- Related image
+- Call to action text
+- Active status
+- 2. Service areas
+- Area ID
+- City or community name
+- Province
+- Service availability
+- Display order
+- Local SEO phrase
+- Active status
+- 3. Contact methods
+- Contact method ID
+- Method type
+- Phone number
+- Email address
+- Facebook URL
+- Display label
+- Preferred contact method
+- Button text
+- Active status
+- 4. Website pages
+- Page ID
+- Page title
+- Page slug
+- Page purpose
+- Hero heading
+- Hero subheading
+- Main body content
+- Call to action text
+- Call to action link
+- Display order
+- Publish status
+- 5. Image assets
+- Image ID
+- File name
+- Image type
+- Image location
+- Alt text
+- Caption
+- Related page or section
+- Source
+- Approval status
+- Optimized file size
+- 6. Testimonials or reviews
+- Review ID
+- Customer name or initials
+- Review text
+- Review source
+- Rating
+- Date received
+- Approval status
+- Display order
+- Active status
+- 7. SEO metadata
+- Metadata ID
+- Page title tag
+- Meta description
+- Primary keyword
+- Secondary keywords
+- Local SEO phrase
+- Open Graph title
+- Open Graph description
+- Open Graph image
+- Canonical URL
+- Image alt text
+- 8. Contact requests
+- Request ID
+- Customer name
+- Email address
+- Phone number
+- Requested service
+- Message
+- Preferred contact method
+- Submission date
+- Spam check status
+- Follow-up status
+- Notes
+
+## Field types
+
+- Field types:
+- 1. Services
+- Service ID
+- Type: Text or slug
+- Constraint: Unique value
+- Service name
+- Type: Text
+- Constraint: Required
+- Short description
+- Type: Text
+- Constraint: Required, 1 to 2 sentences
+- Detailed description
+- Type: Long text
+- Constraint: Optional
+- Customer benefit
+- Type: Text
+- Constraint: Optional
+- Recommended use case
+- Type: Text
+- Constraint: Optional
+- Display order
+- Type: Number
+- Constraint: Optional, used to control service order
+- Related image
+- Type: Image file path
+- Constraint: Optional, must use approved website image
+- Call to action text
+- Type: Text
+- Constraint: Optional
+- Active status
+- Type: Boolean
+- Constraint: True or false
+- 2. Service areas
+- Area ID
+- Type: Text or slug
+- Constraint: Unique value
+- City or community name
+- Type: Text
+- Constraint: Required
+- Province
+- Type: Text
+- Constraint: Default value should be Alberta
+- Service availability
+- Type: Choice
+- Constraint: Available, limited, not available
+- Display order
+- Type: Number
+- Constraint: Optional
+- Local SEO phrase
+- Type: Text
+- Constraint: Optional
+- Active status
+- Type: Boolean
+- Constraint: True or false
+- 3. Contact methods
+- Contact method ID
+- Type: Text or slug
+- Constraint: Unique value
+- Method type
+- Type: Choice
+- Constraint: Phone, email, Facebook, contact form
+- Phone number
+- Type: Phone number
+- Constraint: Required if phone contact is used
+- Email address
+- Type: Email
+- Constraint: Required if email or contact form is used
+- Facebook URL
+- Type: URL
+- Constraint: Required if Facebook is linked
+- Display label
+- Type: Text
+- Constraint: Required
+- Preferred contact method
+- Type: Boolean
+- Constraint: True or false
+- Button text
+- Type: Text
+- Constraint: Optional
+- Active status
+- Type: Boolean
+- Constraint: True or false
+- 4. Website pages
+- Page ID
+- Type: Text or slug
+- Constraint: Unique value
+- Page title
+- Type: Text
+- Constraint: Required
+- Page slug
+- Type: Text or URL path
+- Constraint: Required and unique
+- Page purpose
+- Type: Text
+- Constraint: Required
+- Hero heading
+- Type: Text
+- Constraint: Required for main pages
+- Hero subheading
+- Type: Text
+- Constraint: Optional
+- Main body content
+- Type: Long text
+- Constraint: Required where page content is needed
+- Call to action text
+- Type: Text
+- Constraint: Optional
+- Call to action link
+- Type: URL or page anchor
+- Constraint: Optional
+- Display order
+- Type: Number
+- Constraint: Optional
+- Publish status
+- Type: Choice
+- Constraint: Draft, review, published
+- 5. Image assets
+- Image ID
+- Type: Text or slug
+- Constraint: Unique value
+- File name
+- Type: Text
+- Constraint: Required
+- Image type
+- Type: Choice
+- Constraint: Logo, favicon, icon, hero image, service image, before-and-after image, background image
+- Image location
+- Type: File path
+- Constraint: Required
+- Alt text
+- Type: Text
+- Constraint: Required for content images
+- Caption
+- Type: Text
+- Constraint: Optional
+- Related page or section
+- Type: Text
+- Constraint: Optional
+- Source
+- Type: Text
+- Constraint: Optional
+- Approval status
+- Type: Choice
+- Constraint: Pending, approved, rejected
+- Optimized file size
+- Type: Number
+- Constraint: Optional, should be kept as small as practical for web performance
+- 6. Testimonials or reviews
+- Review ID
+- Type: Text or slug
+- Constraint: Unique value
+- Customer name or initials
+- Type: Text
+- Constraint: Optional
+- Review text
+- Type: Long text
+- Constraint: Required if review is displayed
+- Review source
+- Type: Text or URL
+- Constraint: Optional
+- Rating
+- Type: Number
+- Constraint: Optional, usually 1 to 5
+- Date received
+- Type: Date
+- Constraint: Optional
+- Approval status
+- Type: Choice
+- Constraint: Pending, approved, rejected
+- Display order
+- Type: Number
+- Constraint: Optional
+- Active status
+- Type: Boolean
+- Constraint: True or false
+- 7. SEO metadata
+- Metadata ID
+- Type: Text or slug
+- Constraint: Unique value
+- Page title tag
+- Type: Text
+- Constraint: Required, recommended under 60 characters
+- Meta description
+- Type: Text
+- Constraint: Required, recommended under 160 characters
+- Primary keyword
+- Type: Text
+- Constraint: Required
+- Secondary keywords
+- Type: Text list
+- Constraint: Optional
+- Local SEO phrase
+- Type: Text
+- Constraint: Required where local search matters
+- Open Graph title
+- Type: Text
+- Constraint: Optional
+- Open Graph description
+- Type: Text
+- Constraint: Optional
+- Open Graph image
+- Type: Image file path
+- Constraint: Optional
+- Canonical URL
+- Type: URL
+- Constraint: Optional until domain is confirmed
+- Image alt text
+- Type: Text
+- Constraint: Required for important images
+- 8. Contact requests
+- Request ID
+- Type: Text or generated ID
+- Constraint: Unique value
+- Customer name
+- Type: Text
+- Constraint: Required
+- Email address
+- Type: Email
+- Constraint: Required if email response is needed
+- Phone number
+- Type: Phone number
+- Constraint: Optional unless phone follow-up is required
+- Requested service
+- Type: Choice or text
+- Constraint: Optional
+- Message
+- Type: Long text
+- Constraint: Required
+- Preferred contact method
+- Type: Choice
+- Constraint: Phone, email, Facebook
+- Submission date
+- Type: Date and time
+- Constraint: Automatically captured by form service if available
+- Spam check status
+- Type: Choice
+- Constraint: Passed, flagged, blocked
+- Follow-up status
+- Type: Choice
+- Constraint: New, contacted, closed
+- Notes
+- Type: Long text
+- Constraint: Internal use only, optional
+
+## Required fields
+
+- [MISSING: required data fields]
+
+## Relationships
+
+- [MISSING: relationships]
+
+## Ownership
+
+- [MISSING: data ownership]
+
+## Retention notes
+
+- [MISSING: data retention notes]
+
+## Validation notes
+
+- Enforce required fields before save.
+- Validate field types and allowed values.
+- Prevent invalid relationships and orphan records.
+
+## Missing data decisions
+
+20 intake fields are currently missing and marked explicitly in this package.
