@@ -5,25 +5,26 @@
 **Business or department:** Magic Wand Cleaning, a local cleaning business serving Lethbridge, Alberta and nearby areas.  
 **App type:** Web Page  
 **Target platform:** Web Browser  
-**Status:** Intake Complete
+**Status:** Phase 4 client approval package ready
 
 ## Immediate next action
 
-- Complete browser QA across key breakpoints.
-- Confirm remaining client details.
-- Prepare deployment once final domain and hosting are approved.
+- Send Phase 4 client approval package to client.
+- Collect remaining launch details.
+- Update live missing markers only after approval.
+- Begin deployment preparation only after domain, hosting, and email are confirmed.
 
 ## Architect review tasks
 
-- Validate scope and boundaries
-- Resolve contradictions
-- Approve phased prompts
+- Review the Phase 4 approval package before client send-off.
+- Confirm deployment preparation should remain blocked until required approvals are received.
+- Approve the next implementation phase only after client launch details are finalized.
 
 ## Client questions to resolve
 
-20 intake fields are currently missing and marked explicitly in this package.
+The client approval package should collect answers for the remaining launch decisions.
 
-Phase 1 also displays the following client-facing markers:
+Unresolved client-facing details still include:
 
 - [MISSING: domain]
 - [MISSING: approved before-and-after photos]
@@ -36,20 +37,28 @@ Phase 1 also displays the following client-facing markers:
 
 ## Codex readiness checklist
 
-- Scope approved
-- Missing decisions resolved or explicitly deferred
-- Acceptance criteria testable
-- Security and accessibility expectations documented
+- Phase 4 approval package prepared
+- Remaining launch decisions documented
+- Missing client details still visible
+- Deployment still blocked until approvals are complete
 
-## Recommended first Codex phase
+## Recommended next Codex phase
 
-Phase 1 implementation is complete. Continue QA and deployment preparation; do not begin new feature scope until approvals are complete.
+Do not begin deployment preparation yet. Wait for client answers on launch decisions, then update approved live markers and begin deployment preparation in the next phase only after domain, hosting, and email are confirmed.
 
 ## Blockers
 
-- [MISSING: approved hosting environment]
 - [MISSING: final production domain]
+- [MISSING: approved hosting environment]
+- [MISSING: public email address]
+- [MISSING: approved before-and-after photos]
+- [MISSING: client-approved testimonials or review content]
+- [MISSING: confirmed full service area list]
+- [MISSING: confirmed move cleaning inclusions]
+- [MISSING: cleaning supplies policy]
+- [MISSING: preferred quote contact method]
 
 ## Non-blocking improvements
 
-- Improve optional reporting and branding detail coverage after core scope approval.
+- Refine launch documentation after client approvals are received.
+- Prepare deployment notes once the hosting target is approved.
