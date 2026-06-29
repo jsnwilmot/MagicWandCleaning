@@ -475,8 +475,11 @@ p {
   align-items: center;
   justify-content: center;
   overflow: visible;
-  background: #fff9f2;
+  padding: 0;
+  background: transparent;
+  border: 0;
   border-radius: 0;
+  box-shadow: none;
 }
 
 .intro-art img {
@@ -575,6 +578,64 @@ p {
 
 .secondary-missing {
   margin-top: 0.85rem;
+}
+
+.service-area {
+  background: var(--color-off-white);
+}
+
+.service-area-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.service-area-copy {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+}
+
+.service-area-copy h2 {
+  max-width: 15ch;
+}
+
+.service-area-copy p {
+  max-width: 38rem;
+  color: var(--color-muted);
+  font-size: 1.08rem;
+}
+
+.service-area-copy .heading-sparkle {
+  margin-bottom: -0.5rem;
+}
+
+.service-area-missing {
+  padding: 0.65rem 0.85rem;
+  background: #fff;
+  border: 1px dashed #8ba6c7;
+  border-radius: 0.6rem;
+  font-size: 0.95rem !important;
+  font-weight: 700;
+}
+
+.service-area-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.service-area-art img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
 }
 
 .work-grid {
@@ -812,6 +873,355 @@ p {
   font-size: 0.82rem;
 }
 
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(4.5rem, 10vw, 7.5rem);
+  text-align: center;
+  background: linear-gradient(160deg, #f1f6fd 8%, #eaf1fb 62%, #e1ebf8 100%);
+}
+
+.page-hero::before,
+.page-hero::after {
+  position: absolute;
+  color: #5aa4f7;
+  line-height: 1;
+  content: "\2726";
+}
+
+.page-hero::before {
+  top: 22%;
+  left: 8%;
+  font-size: 1.25rem;
+}
+
+.page-hero::after {
+  right: 10%;
+  bottom: 20%;
+  font-size: 1.75rem;
+}
+
+.page-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.page-kicker {
+  margin-bottom: 0.65rem;
+  color: var(--color-blue);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.page-hero h1 {
+  max-width: 14ch;
+  margin-inline: auto;
+}
+
+.page-hero p:last-child {
+  max-width: 45rem;
+  margin: 1.15rem auto 0;
+  color: #3f526d;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+}
+
+.interior-section {
+  padding-block: clamp(4rem, 8vw, 6rem);
+}
+
+.interior-section-soft {
+  background: var(--color-blue-light);
+}
+
+.interior-section-warm {
+  background: var(--color-off-white);
+}
+
+.content-intro {
+  display: grid;
+  gap: 1.5rem 3rem;
+  align-items: start;
+}
+
+.content-intro h2 {
+  max-width: 16ch;
+}
+
+.content-intro-copy {
+  display: grid;
+  gap: 1rem;
+  color: var(--color-muted);
+  font-size: 1.08rem;
+}
+
+.section-lede {
+  max-width: 46rem;
+  margin: 1rem auto 2rem;
+  color: var(--color-muted);
+  text-align: center;
+  font-size: 1.08rem;
+}
+
+.service-detail-list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.service-detail {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 4vw, 2.6rem);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-left: 0.35rem solid var(--color-blue);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(10, 41, 90, 0.07);
+  scroll-margin-top: 8rem;
+}
+
+.service-detail-heading {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.service-detail-heading .service-icon {
+  margin: 0;
+}
+
+.service-detail-copy {
+  display: grid;
+  gap: 0.8rem;
+  color: var(--color-muted);
+}
+
+.service-fit {
+  color: var(--color-navy);
+}
+
+.service-detail .button {
+  align-self: start;
+  justify-self: start;
+  margin-top: 0.25rem;
+}
+
+.trust-layout {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.trust-feature {
+  padding: 1.6rem;
+  background: #fff;
+  border: 1px solid #dce6f3;
+  border-radius: var(--radius);
+}
+
+.trust-feature .service-icon {
+  margin-bottom: 1rem;
+}
+
+.trust-feature p {
+  margin-top: 0.65rem;
+  color: var(--color-muted);
+}
+
+.about-story {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.about-story-copy {
+  display: grid;
+  gap: 1.1rem;
+  color: var(--color-muted);
+  font-size: 1.08rem;
+}
+
+.about-story-copy h2 {
+  max-width: 16ch;
+}
+
+.about-art {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.about-art img {
+  width: 100%;
+  height: auto;
+}
+
+.work-gallery {
+  display: grid;
+  gap: 1rem;
+}
+
+.work-placeholder {
+  min-height: 15rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border: 1px solid #d3dfed;
+  border-radius: var(--radius);
+}
+
+.work-placeholder-side {
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  background: linear-gradient(145deg, #d8e0e9, #f4f6f8);
+}
+
+.work-placeholder-side + .work-placeholder-side {
+  border-left: 1px solid #c4d1df;
+  background: linear-gradient(145deg, #e8f3ff, #f8fbff);
+}
+
+.work-placeholder .work-label {
+  font-size: 0.8rem;
+}
+
+.missing-notice {
+  max-width: 50rem;
+  margin: 0 auto 2rem;
+  padding: 1rem 1.25rem;
+  color: #50647e;
+  text-align: center;
+  background: #fff;
+  border: 1px dashed #8ba6c7;
+  border-radius: 0.75rem;
+  font-weight: 700;
+}
+
+.faq-page-list {
+  display: grid;
+  gap: 0.85rem;
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.faq-page-list .faq-card {
+  border-radius: 0.75rem;
+  box-shadow: 0 5px 18px rgba(10, 41, 90, 0.06);
+}
+
+.faq-page-list .faq-card summary {
+  padding: 1.15rem 3rem 1.15rem 1.25rem;
+  color: var(--color-navy);
+  font-size: 1.05rem;
+}
+
+.faq-page-list .faq-answer {
+  padding: 0 1.25rem 1.25rem;
+}
+
+.contact-layout {
+  display: grid;
+  gap: 2rem;
+}
+
+.contact-methods {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-intro-lede {
+  margin-inline: 0;
+  text-align: left;
+}
+
+.contact-card {
+  padding: 1.4rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.contact-card h2,
+.contact-card h3 {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+}
+
+.contact-card p {
+  margin-top: 0.4rem;
+  color: var(--color-muted);
+}
+
+.contact-card a {
+  color: var(--color-blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.quote-guide {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  color: #fff;
+  background: var(--color-navy);
+  border-radius: var(--radius-lg);
+}
+
+.quote-guide h2 {
+  color: #fff;
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+}
+
+.quote-guide p {
+  margin-top: 0.75rem;
+  color: #dce9f8;
+}
+
+.quote-guide .check-list {
+  margin-top: 1.25rem;
+}
+
+.quote-guide .check-list li::before {
+  color: #72bcff;
+}
+
+.legal-content {
+  max-width: 50rem;
+  margin-inline: auto;
+}
+
+.legal-content > * + * {
+  margin-top: 1rem;
+}
+
+.legal-content h2 {
+  margin-top: 2.25rem;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+}
+
+.legal-content p,
+.legal-content li {
+  color: var(--color-muted);
+}
+
+.legal-content ul {
+  display: grid;
+  gap: 0.45rem;
+  padding-left: 1.25rem;
+}
+
+.inline-link {
+  color: var(--color-blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
 @media (min-width: 40rem) {
   .service-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -837,6 +1247,12 @@ p {
   .trust-row {
     grid-template-columns: repeat(2, 1fr);
     min-height: 9rem;
+  }
+
+  .trust-layout,
+  .work-gallery,
+  .contact-methods {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .trust-row li {
@@ -933,6 +1349,10 @@ p {
     grid-template-columns: 0.95fr 1.05fr;
   }
 
+  .service-area-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
   .service-grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -947,6 +1367,24 @@ p {
 
   .footer-grid {
     grid-template-columns: 1.15fr 0.7fr 0.7fr 0.7fr;
+  }
+
+  .content-intro,
+  .about-story,
+  .contact-layout {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  .service-detail {
+    grid-template-columns: minmax(16rem, 0.8fr) 1.2fr;
+  }
+
+  .service-detail .button {
+    grid-column: 2;
+  }
+
+  .trust-layout {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

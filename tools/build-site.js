@@ -18,7 +18,21 @@ execFileSync(process.execPath, [path.join(__dirname, "check-site.js")], {
 
 fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output, { recursive: true });
-fs.copyFileSync(path.join(root, "index.html"), path.join(output, "index.html"));
+const staticFiles = [
+  "index.html",
+  "services.html",
+  "about.html",
+  "work.html",
+  "faq.html",
+  "contact.html",
+  "privacy.html",
+  "robots.txt",
+  "sitemap.xml"
+];
+
+for (const file of staticFiles) {
+  fs.copyFileSync(path.join(root, file), path.join(output, file));
+}
 fs.cpSync(path.join(root, "assets"), path.join(output, "assets"), { recursive: true });
 
 console.log("Static build completed in dist/.");

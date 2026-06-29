@@ -11,34 +11,37 @@
 
 Web Browser
 
-## Environment assumptions
+## Deployment model
 
-- [MISSING: environment assumptions]
+- Static site deployment.
 
 ## Build commands
 
-- npm.cmd test
-- npm.cmd run build
-- npm.cmd audit
+- npm test
+- npm run lint
+- npm run build
 
-## Deployment steps
+## Build output
 
-- [MISSING: deployment steps by environment]
+- `dist/`
 
-## Required secrets or configuration
+## Environment variables
 
-- [MISSING: required secrets and environment variables]
+- No environment variables are required for the current static version.
 
-## Security notes
+## Hosting and domain status
 
-- [MISSING: data protection expectations]
+- Hosting is still pending approval.
+- Final domain is still pending approval.
+- Deployment should not proceed until hosting and final domain are confirmed.
 
 ## Rollback notes
 
-- [MISSING: rollback process]
-- [MISSING: incident communication owner]
+- Revert to the previous Git commit.
+- Redeploy the last known good build.
+- Confirm all live pages after rollback.
 
 ## Open deployment decisions
 
 - [MISSING: approved hosting environment]
-- [MISSING: release approval workflow]
+- [MISSING: final production domain]

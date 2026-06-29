@@ -2,15 +2,17 @@
 
 Date: 2026-06-29
 
+Historical report. This file documents the earlier Phase 1 homepage reset. It is no longer the current implementation state.
+
 ## Summary of Work Completed
 
 - Replaced the prior repo homepage with the approved Phase 1 reset direction.
-- Kept Phase 1 scoped to a single static homepage.
+- Historical scope covered a single static homepage reset.
 - Preserved missing markers only for currently unapproved business details.
 - Retained approved phone, Facebook URL, and Lethbridge service area content.
 - Kept email, testimonial, final domain, before-and-after photos, and cleaning-supplies policy as unresolved placeholders.
 - Ran test, lint, and build checks successfully.
-- Documented intentional removal of old standalone pages and SEO deployment files.
+- Documented (at that time) intentional removal of standalone pages and SEO deployment files.
 
 ## Files Created
 
@@ -37,14 +39,14 @@ Date: 2026-06-29
 - `contact.html`
 - `privacy.html`
 
-Reason: Phase 1 is homepage-only. Standalone interior pages are deferred.
+Historical note: During this report snapshot, Phase 1 was treated as homepage-only and standalone interior pages were deferred.
 
 ## SEO/Deployment Files Intentionally Removed for Rebuild Later
 
 - `robots.txt`
 - `sitemap.xml`
 
-Reason: these will be rebuilt during a later SEO/deployment phase when final domain and page architecture are confirmed.
+Historical note: During this report snapshot, these were planned for later rebuild once domain and page architecture were confirmed.
 
 ## Commands Run
 

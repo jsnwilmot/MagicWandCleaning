@@ -9,7 +9,9 @@
 
 ## Immediate next action
 
-Complete Phase 1 rendered browser verification, then prepare the Architect-approved Phase 2 prompt.
+- Complete browser QA across key breakpoints.
+- Confirm remaining client details.
+- Prepare deployment once final domain and hosting are approved.
 
 ## Architect review tasks
 
@@ -27,9 +29,7 @@ Phase 1 also displays the following client-facing markers:
 - [MISSING: approved before-and-after photos]
 - [MISSING: client-approved testimonials or Facebook reviews]
 - [MISSING: confirmed full service area list]
-- [MISSING: phone number]
 - [MISSING: email address]
-- [MISSING: Facebook URL]
 - [MISSING: confirmed move cleaning inclusions]
 - [MISSING: cleaning supplies policy]
 - [MISSING: preferred quote contact method]
@@ -43,12 +43,12 @@ Phase 1 also displays the following client-facing markers:
 
 ## Recommended first Codex phase
 
-Phase 1 implementation is complete. Do not begin Phase 2 until its prompt is approved.
+Phase 1 implementation is complete. Continue QA and deployment preparation; do not begin new feature scope until approvals are complete.
 
 ## Blockers
 
-- Final browser verification at 360px, 390px, 768px, 1024px, and 1440px remains pending because the current Codex session could not maintain a local preview server for the in-app browser.
-- [MISSING: unresolved blockers]
+- [MISSING: approved hosting environment]
+- [MISSING: final production domain]
 
 ## Non-blocking improvements
 

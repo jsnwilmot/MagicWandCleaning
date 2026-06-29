@@ -79,9 +79,19 @@ Magic Wand Cleaning needs a clear online presence that helps local customers qui
 - Resolve client questions and missing decisions
 - Approve the first Codex implementation phase
 
-## Phase 1 implementation
+## Current implementation
 
-The Architect-approved Phase 1 homepage foundation is implemented as a dependency-free static site.
+Current implementation is a dependency-free static multi-page website.
+
+Current pages are:
+
+- `index.html`
+- `services.html`
+- `about.html`
+- `work.html`
+- `faq.html`
+- `contact.html`
+- `privacy.html`
 
 ### Local commands
 
@@ -93,15 +103,6 @@ npm.cmd run build
 
 The production-ready static output is generated in `dist/`.
 
-### Phase 1 scope delivered
+Production-ready static output is generated in `dist/`.
 
-- Responsive homepage with reusable design tokens
-- Accessible header, mobile navigation, main landmarks, FAQ disclosures, and footer
-- Hero, services, trust, proof placeholder, service area, quote, and FAQ sections
-- Approved logo and favicon assets
-- Homepage metadata and safe LocalBusiness structured data
-- Visible missing markers for unconfirmed business details
-
-### Current limitation
-
-Automated checks pass. Final rendered browser verification at the required responsive widths remains pending because the current Codex session could not keep a local preview server running for the in-app browser.
+The current code has passed `npm test`, `npm run lint`, and `npm run build`.

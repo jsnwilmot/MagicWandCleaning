@@ -4,95 +4,245 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
-const htmlPath = path.join(root, "index.html");
-const html = fs.readFileSync(htmlPath, "utf8");
-
+const pageFiles = [
+  "index.html",
+  "services.html",
+  "about.html",
+  "work.html",
+  "faq.html",
+  "contact.html",
+  "privacy.html"
+];
+const primaryNavLinks = [
+  "index.html",
+  "services.html",
+  "about.html",
+  "work.html",
+  "faq.html",
+  "contact.html"
+];
 const approvedPhoneDisplay = "+1 587-377-0572";
 const approvedPhoneSchema = "+1-587-377-0572";
 const approvedFacebookUrl = "https://www.facebook.com/profile.php?id=100092217970885";
 const approvedServiceArea = "Lethbridge, AB, Canada";
 const creatorUrl = "https://designs.roseandpaw.ca";
-
-const checks = [
-  ["exact page title", "<title>Magic Wand Cleaning | Cleaning Services in Lethbridge, Alberta</title>"],
-  ["semantic header", "<header"],
-  ["semantic navigation", "<nav"],
-  ["semantic main", "<main"],
-  ["semantic footer", "<footer"],
-  ["mobile menu control", 'aria-controls="primary-navigation"'],
-  ["LocalBusiness structured data", '"@type": "LocalBusiness"'],
-  ["proof photo marker", "[MISSING: approved before-and-after photos]"],
-  ["testimonial marker", "[MISSING: client-approved testimonials or Facebook reviews]"],
-  ["email marker", "[MISSING: email address]"],
-  ["approved phone number", approvedPhoneDisplay],
-  ["approved Facebook URL", approvedFacebookUrl],
-  ["approved service area", approvedServiceArea],
-  ["creator URL", creatorUrl],
-  ["creator credit", "Website created by Rose &amp; Paw Digital Designs"]
-];
-
 const failures = [];
+const titles = new Map();
+const descriptions = new Map();
 
-for (const [label, snippet] of checks) {
-  if (!html.includes(snippet)) {
-    failures.push(`Missing ${label}: ${snippet}`);
+const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
+const addFailure = (file, message) => failures.push(`${file}: ${message}`);
+const getAttribute = (html, pattern) => html.match(pattern)?.[1]?.trim();
+
+for (const file of [...pageFiles, "robots.txt", "sitemap.xml"]) {
+  if (!fs.existsSync(path.join(root, file))) {
+    failures.push(`Missing required file: ${file}`);
   }
 }
 
-const h1Count = (html.match(/<h1\b/gi) || []).length;
-if (h1Count !== 1) {
-  failures.push(`Expected exactly one h1, found ${h1Count}.`);
-}
+for (const file of pageFiles) {
+  const filePath = path.join(root, file);
+  if (!fs.existsSync(filePath)) {
+    continue;
+  }
 
-const jsonLdMatch = html.match(
-  /<script\s+type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/i
-);
+  const html = read(file);
+  const title = getAttribute(html, /<title>([^<]+)<\/title>/i);
+  const description = getAttribute(
+    html,
+    /<meta\s+name="description"\s+content="([^"]+)"/i
+  );
 
-if (!jsonLdMatch) {
-  failures.push("Missing parseable LocalBusiness structured data.");
-} else {
-  try {
-    const localBusiness = JSON.parse(jsonLdMatch[1]);
-    if (localBusiness["@type"] !== "LocalBusiness") {
-      failures.push('Structured data must use "@type": "LocalBusiness".');
+  if (!title) {
+    addFailure(file, "missing page title.");
+  } else if (titles.has(title)) {
+    addFailure(file, `page title duplicates ${titles.get(title)}.`);
+  } else {
+    titles.set(title, file);
+  }
+
+  if (!description) {
+    addFailure(file, "missing meta description.");
+  } else if (descriptions.has(description)) {
+    addFailure(file, `meta description duplicates ${descriptions.get(description)}.`);
+  } else {
+    descriptions.set(description, file);
+  }
+
+  const h1Count = (html.match(/<h1\b/gi) || []).length;
+  if (h1Count !== 1) {
+    addFailure(file, `expected exactly one h1, found ${h1Count}.`);
+  }
+
+  for (const landmark of ["header", "nav", "main", "footer"]) {
+    if (!new RegExp(`<${landmark}\\b`, "i").test(html)) {
+      addFailure(file, `missing semantic ${landmark} landmark.`);
     }
-    if (localBusiness.telephone !== approvedPhoneSchema) {
-      failures.push(`Structured data telephone must be ${approvedPhoneSchema}.`);
+  }
+
+  const requiredMetadata = [
+    [/<link\s+rel="canonical"\s+href="[^"]+"/i, "canonical URL"],
+    [/<meta\s+property="og:title"\s+content="[^"]+"/i, "Open Graph title"],
+    [/<meta\s+property="og:description"\s+content="[^"]+"/i, "Open Graph description"],
+    [/<meta\s+property="og:type"\s+content="website"/i, "Open Graph type"],
+    [/<meta\s+property="og:image"\s+content="[^"]+"/i, "Open Graph image"],
+    [/<meta\s+name="twitter:card"\s+content="[^"]+"/i, "Twitter card"],
+    [/<meta\s+name="twitter:title"\s+content="[^"]+"/i, "Twitter title"],
+    [/<meta\s+name="twitter:description"\s+content="[^"]+"/i, "Twitter description"],
+    [/<meta\s+name="twitter:image"\s+content="[^"]+"/i, "Twitter image"]
+  ];
+
+  for (const [pattern, label] of requiredMetadata) {
+    if (!pattern.test(html)) {
+      addFailure(file, `missing ${label}.`);
     }
-    if (localBusiness.areaServed?.name !== "Lethbridge") {
-      failures.push("Structured data service area must be Lethbridge.");
+  }
+
+  for (const snippet of [
+    approvedPhoneDisplay,
+    approvedFacebookUrl,
+    approvedServiceArea,
+    "[MISSING: email address]",
+    creatorUrl,
+    "Website created by Rose &amp; Paw Digital Designs"
+  ]) {
+    if (!html.includes(snippet)) {
+      addFailure(file, `missing approved shared content: ${snippet}`);
     }
-    if (!localBusiness.sameAs?.includes(approvedFacebookUrl)) {
-      failures.push("Structured data must include the approved Facebook URL.");
+  }
+
+  const primaryNav = html.match(
+    /<nav\s+class="site-nav"[\s\S]*?<\/nav>/i
+  )?.[0];
+  if (!primaryNav) {
+    addFailure(file, "missing primary navigation.");
+  } else {
+    for (const link of primaryNavLinks) {
+      if (!primaryNav.includes(`href="${link}"`)) {
+        addFailure(file, `primary navigation is missing ${link}.`);
+      }
     }
-    if ("email" in localBusiness) {
-      failures.push("Structured data contains an unapproved email address.");
+
+    const activeLinks = [...primaryNav.matchAll(
+      /<a\s+href="([^"]+)"\s+aria-current="page"/gi
+    )].map((match) => match[1]);
+    const expectedActive = primaryNavLinks.includes(file) ? file : null;
+    if (expectedActive && (activeLinks.length !== 1 || activeLinks[0] !== expectedActive)) {
+      addFailure(file, `primary active state must point to ${expectedActive}.`);
     }
-  } catch (error) {
-    failures.push(`Invalid LocalBusiness structured data: ${error.message}`);
+    if (!expectedActive && activeLinks.length > 0) {
+      addFailure(file, "primary navigation has an unexpected active state.");
+    }
+  }
+
+  const relativeAssetPattern = /(?:src|href)="(assets\/[^"#?]+)"/g;
+  for (const match of html.matchAll(relativeAssetPattern)) {
+    const assetPath = path.resolve(root, match[1]);
+    if (!assetPath.startsWith(`${root}${path.sep}`) || !fs.existsSync(assetPath)) {
+      addFailure(file, `broken or unsafe asset path: ${match[1]}`);
+    }
+  }
+
+  const localPagePattern = /href="([^"]+\.html)(?:#[^"]*)?"/g;
+  for (const match of html.matchAll(localPagePattern)) {
+    if (match[1].startsWith("[MISSING: domain]")) {
+      continue;
+    }
+    if (!fs.existsSync(path.join(root, match[1]))) {
+      addFailure(file, `broken local page link: ${match[1]}`);
+    }
+  }
+
+  const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
+  const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
+  if (duplicateIds.length > 0) {
+    addFailure(file, `duplicate id values: ${[...new Set(duplicateIds)].join(", ")}`);
+  }
+
+  if (/fonts\.(?:googleapis|gstatic)\.com|googletagmanager|analytics\.js/i.test(html)) {
+    addFailure(file, "contains an unapproved remote font or tracking dependency.");
+  }
+
+  for (const unapproved of ["tammie1964@yahoo.ca", "Carol Heggie"]) {
+    if (html.includes(unapproved)) {
+      addFailure(file, `contains unapproved content: ${unapproved}`);
+    }
   }
 }
 
-const relativeAssetPattern = /(?:src|href)="(assets\/[^"#?]+)"/g;
-for (const match of html.matchAll(relativeAssetPattern)) {
-  const assetPath = path.resolve(root, match[1]);
-  if (!assetPath.startsWith(`${root}${path.sep}`) || !fs.existsSync(assetPath)) {
-    failures.push(`Broken or unsafe asset path: ${match[1]}`);
+if (fs.existsSync(path.join(root, "index.html"))) {
+  const indexHtml = read("index.html");
+  for (const serviceAreaSnippet of [
+    "assets/trestle.png",
+    "Proudly serving Lethbridge and nearby areas",
+    "Lethbridge train trestle illustration for Magic Wand Cleaning service area",
+    "[MISSING: confirmed full service area list]"
+  ]) {
+    if (!indexHtml.includes(serviceAreaSnippet)) {
+      addFailure("index.html", `missing Service Area content: ${serviceAreaSnippet}`);
+    }
+  }
+
+  const localBusinessMatch = indexHtml.match(
+    /<script\s+type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/i
+  );
+
+  if (!localBusinessMatch) {
+    addFailure("index.html", "missing LocalBusiness structured data.");
+  } else {
+    try {
+      const localBusiness = JSON.parse(localBusinessMatch[1]);
+      if (localBusiness["@type"] !== "LocalBusiness") {
+        addFailure("index.html", 'structured data must use "@type": "LocalBusiness".');
+      }
+      if (localBusiness.telephone !== approvedPhoneSchema) {
+        addFailure("index.html", `structured data telephone must be ${approvedPhoneSchema}.`);
+      }
+      if (!localBusiness.sameAs?.includes(approvedFacebookUrl)) {
+        addFailure("index.html", "structured data must include the approved Facebook URL.");
+      }
+      if ("email" in localBusiness || "aggregateRating" in localBusiness) {
+        addFailure("index.html", "structured data contains unapproved contact or rating data.");
+      }
+    } catch (error) {
+      addFailure("index.html", `invalid LocalBusiness structured data: ${error.message}`);
+    }
   }
 }
 
-if (/fonts\.(?:googleapis|gstatic)\.com|googletagmanager|analytics\.js/i.test(html)) {
-  failures.push("Unapproved remote font or tracking dependency found.");
+if (fs.existsSync(path.join(root, "faq.html"))) {
+  const faqHtml = read("faq.html");
+  const scripts = [...faqHtml.matchAll(
+    /<script\s+type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/gi
+  )];
+  const faqData = scripts
+    .map((match) => {
+      try {
+        return JSON.parse(match[1]);
+      } catch {
+        return null;
+      }
+    })
+    .find((data) => data?.["@type"] === "FAQPage");
+
+  if (!faqData || !Array.isArray(faqData.mainEntity) || faqData.mainEntity.length < 1) {
+    addFailure("faq.html", "missing valid FAQPage structured data.");
+  }
 }
 
-const unapprovedContent = [
-  ["email address", "tammie1964@yahoo.ca"],
-  ["testimonial attribution", "Carol Heggie"]
-];
+if (fs.existsSync(path.join(root, "robots.txt"))) {
+  const robots = read("robots.txt");
+  if (!robots.includes("Sitemap: [MISSING: domain]/sitemap.xml")) {
+    addFailure("robots.txt", "missing sitemap marker URL.");
+  }
+}
 
-for (const [label, snippet] of unapprovedContent) {
-  if (html.includes(snippet)) {
-    failures.push(`Unapproved ${label} found: ${snippet}`);
+if (fs.existsSync(path.join(root, "sitemap.xml"))) {
+  const sitemap = read("sitemap.xml");
+  for (const file of pageFiles) {
+    if (!sitemap.includes(`[MISSING: domain]/${file}`)) {
+      addFailure("sitemap.xml", `missing ${file}.`);
+    }
   }
 }
 
@@ -104,4 +254,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`Site checks passed (${checks.length + 4} checks).`);
+console.log(`Site checks passed for ${pageFiles.length} pages.`);
