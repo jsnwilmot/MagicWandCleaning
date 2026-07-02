@@ -172,6 +172,31 @@ for (const file of pageFiles) {
 
 if (fs.existsSync(path.join(root, "index.html"))) {
   const indexHtml = read("index.html");
+  const approvedWorkImages = [
+    "assets/images/work/before-after-1.png",
+    "assets/images/work/before-after-2.png",
+    "assets/images/work/before-after-3.png"
+  ];
+
+  for (const imagePath of approvedWorkImages) {
+    const escapedImagePath = imagePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const imageTag = indexHtml.match(
+      new RegExp(`<img\\s+[^>]*src="${escapedImagePath}"[^>]*>`, "i")
+    )?.[0];
+    const hasRequiredMarkup = imageTag
+      && /alt="[^"]+"/i.test(imageTag)
+      && /\sloading="lazy"/i.test(imageTag)
+      && /\swidth="1672"/i.test(imageTag)
+      && /\sheight="941"/i.test(imageTag);
+    if (!hasRequiredMarkup) {
+      addFailure("index.html", `approved work image is missing accessible lazy-loaded markup: ${imagePath}`);
+    }
+  }
+
+  if (indexHtml.includes("[MISSING: approved before-and-after photos]")) {
+    addFailure("index.html", "approved before-and-after missing marker is still visible.");
+  }
+
   for (const serviceAreaSnippet of [
     "assets/trestle.png",
     "Proudly serving Lethbridge and nearby areas",
