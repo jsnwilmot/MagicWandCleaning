@@ -197,6 +197,20 @@ if (fs.existsSync(path.join(root, "index.html"))) {
     addFailure("index.html", "approved before-and-after missing marker is still visible.");
   }
 
+  for (const testimonialSnippet of [
+    "Facebook recommendation.",
+    "Tammie is fantastic! Always very thorough! And is very knowledgeable about cleaning.",
+    "Carol H."
+  ]) {
+    if (!indexHtml.includes(testimonialSnippet)) {
+      addFailure("index.html", `missing approved testimonial content: ${testimonialSnippet}`);
+    }
+  }
+
+  if (indexHtml.includes("[MISSING: client-approved testimonials or Facebook reviews]")) {
+    addFailure("index.html", "approved testimonial missing marker is still visible.");
+  }
+
   for (const serviceAreaSnippet of [
     "assets/trestle.png",
     "Proudly serving Lethbridge and nearby areas",

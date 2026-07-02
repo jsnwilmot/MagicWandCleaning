@@ -576,10 +576,6 @@ p {
   font-weight: 700;
 }
 
-.secondary-missing {
-  margin-top: 0.85rem;
-}
-
 .service-area {
   background: var(--color-off-white);
 }
@@ -656,6 +652,41 @@ p {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.testimonial-card {
+  max-width: 46rem;
+  margin: clamp(1.5rem, 4vw, 2.25rem) auto 0;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0.7rem 1.8rem rgb(38 81 134 / 10%);
+}
+
+.testimonial-source {
+  color: var(--color-blue);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.testimonial-quote {
+  margin: 0.8rem 0 1rem;
+}
+
+.testimonial-quote p {
+  color: var(--color-navy);
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.testimonial-reviewer {
+  color: var(--color-muted);
+  font-weight: 800;
 }
 
 .work-label {
