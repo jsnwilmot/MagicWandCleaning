@@ -34,6 +34,8 @@ npm run build
 
 Current implementation is a dependency-free static multi-page website serving local homeowners in Lethbridge, with a monthly community donation nomination page.
 
+- Release posture: Draft-ready, not final production-ready.
+
 ## Approved Intake Details Implemented
 
 - Business name: Magic Wand Cleaning
@@ -65,6 +67,20 @@ Current unresolved details:
 - Web3Forms access key (`[MISSING_WEB3FORMS_ACCESS_KEY]`)
 - additional client images (`[MISSING_CLIENT_IMAGES]`)
 - additional testimonials (`[MISSING_TESTIMONIALS]`)
+
+## Final Launch Blockers
+
+The following items must be resolved before final production deployment:
+
+- `[MISSING: domain]`
+- `[MISSING_BUSINESS_EMAIL]`
+- `[MISSING_WEB3FORMS_ACCESS_KEY]`
+- Owner bio final content approval for About page
+
+Additional pending content items:
+
+- `[MISSING_CLIENT_IMAGES]`
+- `[MISSING_TESTIMONIALS]`
 
 ## Client Setup Todo
 

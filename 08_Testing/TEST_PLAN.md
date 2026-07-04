@@ -158,3 +158,4 @@ Validation, generation, persistence, document preview, and export behavior for t
 - Verify phone number `+1 587-377-0572` appears in header/footer/contact flow.
 - Verify unsupported services are not advertised on public pages.
 - Verify `[MISSING_BUSINESS_EMAIL]`, `[MISSING_OWNER_BIO]`, and `[MISSING_WEB3FORMS_ACCESS_KEY]` remain visible where expected.
+- Verify Clean Start Gift submit button remains disabled while `[MISSING_WEB3FORMS_ACCESS_KEY]` is unresolved.

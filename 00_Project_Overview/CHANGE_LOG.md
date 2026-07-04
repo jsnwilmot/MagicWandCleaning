@@ -50,3 +50,10 @@
 - Updated navigation and footer quick links to include Giving Back across public pages.
 - Updated sitemap and build/check scripts to include the new page and marker changes.
 - Documented current client setup tasks and remaining missing markers in project documentation.
+
+### Launch blocker resolution prep
+
+- Created review branch `qa/clean-start-gift-release-readiness` to preserve QA work without pushing `main`.
+- Replaced visible public About page owner marker with neutral non-final fallback copy.
+- Added launch-safety gating on Clean Start Gift submission button while `[MISSING_WEB3FORMS_ACCESS_KEY]` remains unresolved.
+- Added explicit draft-ready and production blocker language to project documentation.

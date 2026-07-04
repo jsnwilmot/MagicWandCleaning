@@ -13,6 +13,7 @@
 - Collect remaining launch details.
 - Update live missing markers only after approval.
 - Begin deployment preparation only after domain, hosting, and email are confirmed.
+- Treat current site state as draft-ready only until launch blockers are resolved.
 
 ## Architect review tasks
 
@@ -68,8 +69,8 @@ Do not begin deployment preparation yet. Wait for client answers on launch decis
 - [MISSING: final production domain]
 - [MISSING: approved hosting environment]
 - [MISSING_BUSINESS_EMAIL]
-- [MISSING_OWNER_BIO]
 - [MISSING_WEB3FORMS_ACCESS_KEY]
+- [MISSING_OWNER_BIO] (blocker if unapproved owner bio wording remains on public About page)
 - [MISSING_CLIENT_IMAGES]
 - [MISSING_TESTIMONIALS]
 
