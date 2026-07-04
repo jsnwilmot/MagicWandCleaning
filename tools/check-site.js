@@ -10,6 +10,7 @@ const pageFiles = [
   "about.html",
   "work.html",
   "faq.html",
+  "clean-start-gift.html",
   "contact.html",
   "privacy.html"
 ];
@@ -19,6 +20,7 @@ const primaryNavLinks = [
   "about.html",
   "work.html",
   "faq.html",
+  "clean-start-gift.html",
   "contact.html"
 ];
 const approvedPhoneDisplay = "+1 587-377-0572";
@@ -102,7 +104,7 @@ for (const file of pageFiles) {
     approvedPhoneDisplay,
     approvedFacebookUrl,
     approvedServiceArea,
-    "[MISSING: email address]",
+    "[MISSING_BUSINESS_EMAIL]",
     creatorUrl,
     "Website created by Rose &amp; Paw Digital Designs"
   ]) {
@@ -213,9 +215,10 @@ if (fs.existsSync(path.join(root, "index.html"))) {
 
   for (const serviceAreaSnippet of [
     "assets/trestle.png",
-    "Proudly serving Lethbridge and nearby areas",
+    "Proudly serving homes in Lethbridge",
+    "Magic Wand Cleaning serves homes in Lethbridge, Alberta.",
+    "For move-out cleaning, surrounding areas may be considered depending on location, timing, and job size.",
     "Lethbridge train trestle illustration for Magic Wand Cleaning service area",
-    "[MISSING: confirmed full service area list]"
   ]) {
     if (!indexHtml.includes(serviceAreaSnippet)) {
       addFailure("index.html", `missing Service Area content: ${serviceAreaSnippet}`);
@@ -245,6 +248,24 @@ if (fs.existsSync(path.join(root, "index.html"))) {
       }
     } catch (error) {
       addFailure("index.html", `invalid LocalBusiness structured data: ${error.message}`);
+    }
+  }
+}
+
+if (fs.existsSync(path.join(root, "clean-start-gift.html"))) {
+  const givingBackHtml = read("clean-start-gift.html");
+
+  for (const snippet of [
+    "https://api.web3forms.com/submit",
+    "name=\"access_key\"",
+    "[MISSING_WEB3FORMS_ACCESS_KEY]",
+    "Magic Wand Cleaning, Clean Start Gift Nomination",
+    "name=\"from_name\"",
+    "name=\"botcheck\"",
+    "Submitting a nomination does not guarantee selection."
+  ]) {
+    if (!givingBackHtml.includes(snippet)) {
+      addFailure("clean-start-gift.html", `missing required Giving Back form/content snippet: ${snippet}`);
     }
   }
 }

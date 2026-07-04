@@ -34,3 +34,19 @@
 - Known gaps: 20 intake fields are currently missing and marked explicitly in this package.
 
 - Next review action: Architect resolves missing decisions and confirms phased implementation order.
+
+## 2026-07-03
+
+### Approved intake update and Giving Back implementation
+
+- Updated site-wide business content to approved profile details: owner-operated, 20+ years, Lethbridge-focused residential service.
+- Replaced quote-led wording with booking-first wording and retained approved phone contact across pages.
+- Published approved pricing language: $30 per hour with a 3-hour minimum per visit.
+- Removed unsupported advertised services and unsupported claim language from public pages.
+- Added homepage Giving Back teaser section linking to The Clean Start Gift page.
+- Created `clean-start-gift.html` with full program details, eligibility limits, and privacy expectations.
+- Added Web3Forms nomination form using required hidden fields, honeypot, and visible missing key marker: `[MISSING_WEB3FORMS_ACCESS_KEY]`.
+- Added static-friendly redirect success pattern for nomination submissions.
+- Updated navigation and footer quick links to include Giving Back across public pages.
+- Updated sitemap and build/check scripts to include the new page and marker changes.
+- Documented current client setup tasks and remaining missing markers in project documentation.

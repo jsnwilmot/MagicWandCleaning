@@ -27,13 +27,30 @@ The client approval package should collect answers for the remaining launch deci
 Unresolved client-facing details still include:
 
 - [MISSING: domain]
-- [MISSING: approved before-and-after photos]
-- [MISSING: client-approved testimonials or Facebook reviews]
-- [MISSING: confirmed full service area list]
-- [MISSING: email address]
-- [MISSING: confirmed move cleaning inclusions]
-- [MISSING: cleaning supplies policy]
-- [MISSING: preferred quote contact method]
+- [MISSING_BUSINESS_EMAIL]
+- [MISSING_OWNER_BIO]
+- [MISSING_WEB3FORMS_ACCESS_KEY]
+- [MISSING_CLIENT_IMAGES]
+- [MISSING_TESTIMONIALS]
+
+## Client setup tasks
+
+Client to create:
+
+- New Gmail account for the business
+- Cloudflare account
+
+Client to do with developer assistance in person:
+
+- Google Analytics 4 access level: Editor or Administrator
+- Google Search Console access level: Full user
+- Google Business Profile access level: Manager
+- Facebook Business Profile access level: Editor or Administrator
+- Cloudflare: procure domain and grant developer access
+
+Recommended domain:
+
+- magicwandcleaninglethbridge.ca
 
 ## Codex readiness checklist
 
@@ -50,13 +67,11 @@ Do not begin deployment preparation yet. Wait for client answers on launch decis
 
 - [MISSING: final production domain]
 - [MISSING: approved hosting environment]
-- [MISSING: public email address]
-- [MISSING: approved before-and-after photos]
-- [MISSING: client-approved testimonials or review content]
-- [MISSING: confirmed full service area list]
-- [MISSING: confirmed move cleaning inclusions]
-- [MISSING: cleaning supplies policy]
-- [MISSING: preferred quote contact method]
+- [MISSING_BUSINESS_EMAIL]
+- [MISSING_OWNER_BIO]
+- [MISSING_WEB3FORMS_ACCESS_KEY]
+- [MISSING_CLIENT_IMAGES]
+- [MISSING_TESTIMONIALS]
 
 ## Non-blocking improvements
 

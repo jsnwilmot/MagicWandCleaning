@@ -56,8 +56,8 @@ Validation, generation, persistence, document preview, and export behavior for t
 - Step 3: Visitor reads the business introduction and local Lethbridge service message.
 - Step 4: Visitor reviews services, service area, proof of work, and contact options.
 - Step 5: Visitor decides whether to contact Magic Wand Cleaning.
-- 2. Visitor requests service or a quote
-- Step 1: Visitor selects a quote, contact, phone, email, Facebook, or contact form call to action.
+- 2. Visitor requests service or books cleaning
+- Step 1: Visitor selects a booking, contact, phone, text, email, Facebook, or form call to action.
 - Step 2: Visitor chooses their preferred contact method.
 - Step 3: Visitor contacts the business directly or completes the contact form if used.
 - Step 4: Magic Wand Cleaning receives the request.
@@ -72,18 +72,18 @@ Validation, generation, persistence, document preview, and export behavior for t
 - Step 1: Visitor looks for service area information.
 - Step 2: Visitor reads that Magic Wand Cleaning serves Lethbridge and approved nearby areas.
 - Step 3: Visitor confirms whether their location is likely covered.
-- Step 4: Visitor contacts the business if they need confirmation or want to request service.
+- Step 4: Visitor contacts the business if they need confirmation or want to book service.
 - 5. Visitor views proof of work
 - Step 1: Visitor scrolls to the proof-of-work section.
 - Step 2: Visitor views approved before-and-after photos, testimonials, review highlights, or trust content if available.
 - Step 3: Visitor uses the proof content to assess quality and credibility.
-- Step 4: Visitor selects a contact or quote option if ready to proceed.
-- 6. Contact form submission
-- Step 1: Visitor opens the contact or quote request form.
-- Step 2: Visitor enters required information, such as name, email, phone number, requested service, and message.
+- Step 4: Visitor selects a contact or booking option if ready to proceed.
+- 6. Giving Back nomination form submission
+- Step 1: Visitor opens the Giving Back page nomination form.
+- Step 2: Visitor enters required nominator and nominee details and confirms consent checkboxes.
 - Step 3: The form checks required fields.
 - Step 4: Spam protection runs if enabled.
-- Step 5: The form sends the message to the approved business email.
+- Step 5: The form sends the message through Web3Forms.
 - Step 6: Visitor sees a success message or next-step confirmation.
 - 7. Content update request
 - Step 1: Magic Wand Cleaning requests a change to content, photos, services, contact details, or service area information.
@@ -149,3 +149,12 @@ Validation, generation, persistence, document preview, and export behavior for t
 - Verify all approved images load without layout shift.
 - Verify there is no horizontal overflow, clipping, overlap, or unreadable text.
 - Verify browser console has no relevant warnings or errors.
+
+### 2026-07-03 update checks
+
+- Verify homepage includes Giving Back teaser and CTA links to `clean-start-gift.html`.
+- Verify `clean-start-gift.html` includes Web3Forms action, required hidden fields, honeypot, and required consent checkboxes.
+- Verify pricing appears as `$30 per hour` with `3-hour minimum` on public pages.
+- Verify phone number `+1 587-377-0572` appears in header/footer/contact flow.
+- Verify unsupported services are not advertised on public pages.
+- Verify `[MISSING_BUSINESS_EMAIL]`, `[MISSING_OWNER_BIO]`, and `[MISSING_WEB3FORMS_ACCESS_KEY]` remain visible where expected.

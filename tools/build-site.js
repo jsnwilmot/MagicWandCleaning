@@ -24,6 +24,7 @@ const staticFiles = [
   "about.html",
   "work.html",
   "faq.html",
+  "clean-start-gift.html",
   "contact.html",
   "privacy.html",
   "robots.txt",
