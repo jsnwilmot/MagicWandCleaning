@@ -27,7 +27,7 @@ const approvedPhoneDisplay = "+1 587-377-0572";
 const approvedPhoneSchema = "+1-587-377-0572";
 const approvedFacebookUrl = "https://www.facebook.com/profile.php?id=100092217970885";
 const approvedServiceArea = "Lethbridge, AB, Canada";
-const creatorUrl = "https://designs.roseandpaw.ca";
+const creatorUrl = "https://design.roseandpaw.ca/";
 const failures = [];
 const titles = new Map();
 const descriptions = new Map();
